@@ -95,14 +95,17 @@ class Ship(object):
             ...
             ValueError: Illegal direction
         """
-        if direction == 'H':
-            for i in range(self._length):
-                self.coords.append((row + i, col))
-        elif direction == 'V':
-            for i in range(self._length):
-                self.coords.append((row, col + i))
-        else: 
-            raise ValueError("Illegal direction")
+        coords = []
+        for ii in range(self._length):
+            if direction == 'H':
+                new_coord = (col+ii, row)
+            elif direction == 'V':
+                new_coord = (col, row+ii)
+            else: 
+                raise ValueError("Illegal direction")
+            coords.append(new_coord)
+        self.coords = coords
+
 
 class AircraftCarrier(Ship):
     _length = 5
