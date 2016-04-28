@@ -478,11 +478,14 @@ class Player(object):
             >>> player.is_dead()
             True
         """
-
+        is_dead = True
         if not self._ships:
-            return True
+            return is_dead
         else:
-            return False
+            for ship in self._ships:
+                if ship.hits != ship._length:
+                    return False
+        return is_dead
 
 class Game(object):
     """Battleship game."""
